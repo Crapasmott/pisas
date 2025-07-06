@@ -37,7 +37,7 @@ const puntos = [
     lng: -75.645,
     descripcion:
       "Puente elevado con tecnología antisísmica. Parte crítica del corredor vial.",
-    imagen: "/images/automar.jpg",
+    imagen: "/images/carreteras1.jpg",
     link: "/proyectos",
   },
   {
