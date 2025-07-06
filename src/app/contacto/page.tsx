@@ -3,6 +3,20 @@
 import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import PqrButton from "@/components/PqrButton";
+// Carga dinámica de Leaflet (solo en cliente)
+
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// Fix íconos Leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
+});
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
@@ -41,7 +55,7 @@ export default function ContactoPage() {
           </p>
         </motion.section>
 
-        {/* Sección principal */}
+        {/* Formulario e info */}
         <motion.section
           className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 bg-white border border-gray-200 rounded-xl shadow-md p-10"
           initial={{ opacity: 0 }}
@@ -110,7 +124,7 @@ export default function ContactoPage() {
             )}
           </div>
 
-          {/* Información de contacto */}
+          {/* Información */}
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-blue-700 mb-2">
               Información de contacto
@@ -133,7 +147,26 @@ export default function ContactoPage() {
             </div>
           </div>
         </motion.section>
+
+        {/* Mapa */}
+       {/* Mapa de ubicación */}
+<section className="mt-16 max-w-6xl mx-auto">
+  <h2 className="text-2xl font-semibold text-blue-700 mb-4">Nuestra ubicación</h2>
+  <div className="w-full h-[450px] rounded-xl overflow-hidden shadow-lg">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.396670220226!2d-74.03894992432383!3d4.700952341653928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9aac03bdca95%3A0x3ea1a9296fccbe3c!2sCl.%20123%20%2345A-11%2C%20Usaqu%C3%A9n%2C%20Bogot%C3%A1%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1751792551393!5m2!1ses-419!2sco"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
       </main>
+       <PqrButton />
     </>
   );
 }
