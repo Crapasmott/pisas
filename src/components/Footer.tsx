@@ -1,4 +1,7 @@
 // src/components/Footer.tsx
+"use client";
+
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -17,10 +20,18 @@ export default function Footer() {
         <div>
           <h4 className="font-bold mb-2">Enlaces rápidos</h4>
           <ul className="text-sm space-y-1">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/servicios">Servicios</a></li>
-            <li><a href="/proyectos">Proyectos</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li>
+              <Link href="/">Inicio</Link>
+            </li>
+            <li>
+              <Link href="/servicios">Servicios</Link>
+            </li>
+            <li>
+              <Link href="/proyectos">Proyectos</Link>
+            </li>
+            <li>
+              <Link href="/contacto">Contacto</Link>
+            </li>
           </ul>
         </div>
 

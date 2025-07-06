@@ -9,8 +9,9 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import Image from "next/image";
 
-// Corrección de íconos en Next.js
+// Corrección de íconos Leaflet
 delete ((L.Icon.Default.prototype as unknown) as Record<string, unknown>)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -19,7 +20,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
 });
 
-// Lista de puntos aproximados
+// Lista de puntos
 const puntos = [
   {
     nombre: "Túnel de Tesalia (UF1)",
@@ -27,8 +28,8 @@ const puntos = [
     lng: -75.768,
     descripcion:
       "Conexión subterránea clave para el eje cafetero. Mejora la movilidad y reduce tiempos de viaje.",
-    imagen: "/images/carreteras1.jpg",
-    link: "/proyectos",
+    imagen: "/images/automar.jpg",
+    link: "/proyect",
   },
   {
     nombre: "Puente 1 (UF3)",
@@ -36,7 +37,7 @@ const puntos = [
     lng: -75.645,
     descripcion:
       "Puente elevado con tecnología antisísmica. Parte crítica del corredor vial.",
-    imagen: "/images/carreteras1.jpg",
+    imagen: "/images/automar.jpg",
     link: "/proyectos",
   },
   {
@@ -95,7 +96,7 @@ export default function MapaLeaflet() {
           className="w-full h-full z-0"
         >
           <TileLayer
-            attribution='&copy; OpenStreetMap'
+            attribution='&copy; OpenStreetMap contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
@@ -103,21 +104,21 @@ export default function MapaLeaflet() {
             <Marker key={i} position={[p.lat, p.lng]}>
               <Popup>
                 <div className="max-w-[220px]">
-                  <img
+                  <Image
                     src={p.imagen}
                     alt={p.nombre}
+                    width={220}
+                    height={96}
                     className="w-full h-24 object-cover rounded mb-2"
                   />
                   <h4 className="font-bold text-sm mb-1">{p.nombre}</h4>
                   <p className="text-xs text-gray-700 mb-3">{p.descripcion}</p>
-                 <a
-  href={p.link}
-  className="inline-block w-full text-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 !text-white text-xs font-semibold rounded transition"
-
->
-  Ver proyecto →
-</a>
-
+                  <a
+                    href={p.link}
+                    className="inline-block w-full text-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 !text-white text-xs font-semibold rounded transition"
+                  >
+                    Ver proyecto →
+                  </a>
                 </div>
               </Popup>
               <Tooltip>{p.nombre}</Tooltip>
